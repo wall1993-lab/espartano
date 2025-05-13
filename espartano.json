@@ -1,0 +1,175 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agoge.AI",
+    "version": "1.0.0",
+    "description": "Treinador motivacional baseado na filosofia grega e disciplina espartana. Cria treinos, dietas, análises de progresso e propõe desafios de evolução física e mental."
+  },
+  "servers": [
+    {
+      "url": "https://wall1993-lab.github.io/agoge-ai-schema"
+    }
+  ],
+  "paths": {
+    "/criar_plano_treino": {
+      "post": {
+        "operationId": "criar_plano_treino",
+        "description": "Cria um plano de treino físico baseado no objetivo do usuário e seu nível atual.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "objetivo": {
+                    "type": "string",
+                    "description": "Objetivo do treino (ex: hipertrofia, emagrecimento, resistência)."
+                  },
+                  "nivel": {
+                    "type": "string",
+                    "description": "Nível atual do usuário (iniciante, intermediário, avançado)."
+                  },
+                  "frequencia_semanal": {
+                    "type": "integer",
+                    "description": "Número de treinos semanais disponíveis."
+                  }
+                },
+                "required": ["objetivo", "nivel", "frequencia_semanal"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Plano de treino gerado com sucesso."
+          }
+        }
+      }
+    },
+    "/criar_dieta": {
+      "post": {
+        "operationId": "criar_dieta",
+        "description": "Sugere um plano alimentar básico alinhado ao objetivo físico do usuário.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "objetivo": {
+                    "type": "string",
+                    "description": "Objetivo nutricional (ex: ganhar massa, perder gordura, aumentar resistência)."
+                  },
+                  "restricoes_alimentares": {
+                    "type": "string",
+                    "description": "Restrições alimentares, se houver (ex: lactose, vegetariano, etc.)."
+                  }
+                },
+                "required": ["objetivo"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Plano alimentar sugerido."
+          }
+        }
+      }
+    },
+    "/analisar_progresso": {
+      "post": {
+        "operationId": "analisar_progresso",
+        "description": "Analisa a evolução do usuário com base em peso, medidas corporais e observações visuais.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "peso_atual": {
+                    "type": "number",
+                    "description": "Peso atual em quilogramas."
+                  },
+                  "medidas_corporais": {
+                    "type": "string",
+                    "description": "Principais medidas corporais (cintura, quadril, braço, etc.)."
+                  },
+                  "observacoes_visuais": {
+                    "type": "string",
+                    "description": "Observações sobre as mudanças físicas percebidas."
+                  }
+                },
+                "required": ["peso_atual", "medidas_corporais"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Análise de progresso realizada."
+          }
+        }
+      }
+    },
+    "/mensagem_motivacional": {
+      "post": {
+        "operationId": "mensagem_motivacional",
+        "description": "Envia uma mensagem motivacional inspirada na filosofia grega e disciplina espartana.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tipo_mensagem": {
+                    "type": "string",
+                    "description": "Tipo de mensagem desejada (ex: intensa, filosófica, desafio, inspiração)."
+                  }
+                },
+                "required": ["tipo_mensagem"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Mensagem motivacional enviada."
+          }
+        }
+      }
+    },
+    "/desafiar_usuario": {
+      "post": {
+        "operationId": "desafiar_usuario",
+        "description": "Propõe um desafio físico ou mental para superar limites pessoais.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "area": {
+                    "type": "string",
+                    "description": "Área a ser desafiada (resistência, disciplina alimentar, foco mental)."
+                  }
+                },
+                "required": ["area"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Desafio proposto."
+          }
+        }
+      }
+    }
+  }
+}
